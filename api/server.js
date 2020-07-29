@@ -21,4 +21,10 @@ server.get('/', (req, res) => {
   res.json({ api: 'Up & Running!' });
 });
 
+function hashString(str) {
+  const rounds = process.env.HASH_ROUNDS || 4;
+  const hash = bcrypt.hashSync(str, rounds);
+
+  return hash;
+}
 module.exports = server;
