@@ -1,4 +1,4 @@
-// const db = require('../database/connection.js');
+const db = require('../database/dbConfig.js');
 
 module.exports = {
   add,
@@ -15,7 +15,7 @@ function findBy(filter) {
   return db('users').where(filter).orderBy('id');
 }
 
-async function add(users) {
+async function add(user) {
   try {
     const [id] = await db('users').insert(user, 'id');
 
