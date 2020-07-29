@@ -43,7 +43,17 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  //
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) {
+        res.json({ message: 'error logging out' });
+      } else {
+        res.status(200).json({ message: 'thanks, come again' });
+      }
+    });
+  } else {
+    res.status(200).json({ message: 'thanks, come again' });
+  }
 });
 
 module.exports = router;
